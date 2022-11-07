@@ -4,8 +4,10 @@ import express from 'express'
 // routes/*
 import itemsRoute from './routes/items.js'
 
-// utils
+// middlewares
 import requestLogger from './middlewares/requestLogger.js'
+import errorHandler from './middlewares/errorHandler.js'
+import routeNotFound from './middlewares/routeNotFound.js'
 
 const app = express()
 
@@ -15,8 +17,9 @@ app.use(requestLogger)
 app.get('/', (req, res, next) => {
   res.status(200).json({ message: 'it works' })
 })
-
 app.use('/items', itemsRoute)
 
+app.use(routeNotFound)
+app.use(errorHandler)
 
 export default app
