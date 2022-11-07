@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
   res.status(201).json({ 
     message: 'add new item' ,
-    item: body
+    item: req.body
   })
 })
 
