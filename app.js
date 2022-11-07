@@ -1,9 +1,16 @@
 import express from 'express'
 
-const app = express()
+// routes
+// routes/*
+import itemsRoute from './routes/items.js'
 
-app.use((req, res, next) => {
+const app = express()
+app.use(express.json())
+
+app.get('/', (req, res, next) => {
   res.status(200).json({ message: 'it works' })
 })
+app.use('/items', itemsRoute)
+
 
 export default app
